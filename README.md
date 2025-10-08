@@ -18,7 +18,18 @@ The pipeline integrates **real-time user activity logs** with **historical purch
   - `purchase_amount` (randomized between $10–$500)  
   - `purchase_date` (dates across 2023)  
 - Saved dataset in **Parquet format** for efficient processing.  
-- Verified dataset preview (500 rows, 4 columns).  
+- Verified dataset preview (500 rows, 4 columns).
+
+### ✅ Step 2 – Real-Time User Activity Logs
+- Simulated **200 user activity events** to mimic real-time streaming logs.
+- Each event contains:
+  - `user_id`
+  - `item_id`
+  - `event_type` (view, click, add_to_cart)
+  - `timestamp`
+- Saved logs to `data/stream/user_activity_day1.csv` to represent streaming ingestion.
+
+
 
 
 
