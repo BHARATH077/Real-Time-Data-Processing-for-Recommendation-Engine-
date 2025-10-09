@@ -44,6 +44,17 @@ The pipeline integrates **real-time user activity logs** with **historical purch
   - Enriched with purchase history (average spend, past purchases).
 - Appended enriched results to `data/enriched/enriched_day1_chunked.csv`.
 
+### ✅ Step 5 – Session-Level Feature Engineering
+- Took enriched streaming data (`enriched_day1_chunked.csv`) and grouped activity into **sessions per user**.
+- Defined a session as continuous activity with no gap larger than **30 minutes**.
+- Engineered session features:
+  - `num_clicks`, `num_views` → interaction counts
+  - `session_length`, `avg_time_gap` → engagement intensity
+  - `last_event` → potential intent signal
+  - `avg_purchase_amount`, `past_purchases` → historical enrichment
+- Saved the final session dataset at `data/sessions/session_features_day1.csv`.
+
+**Next Step (Day 6):** Generate **user profiles** by aggregating across sessions (long-term behavior), preparing for recommendation modeling.
 
 
 
