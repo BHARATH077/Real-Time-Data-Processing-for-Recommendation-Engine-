@@ -29,6 +29,25 @@ The pipeline integrates **real-time user activity logs** with **historical purch
   - `timestamp`
 - Saved logs to `data/stream/user_activity_day1.csv` to represent streaming ingestion.
 
+### ✅ Step 3 – Mini Streaming Pipeline (First Join)
+- Read historical purchases (`historical_purchases.parquet`) and simulated stream logs (`user_activity_day1.csv`).
+- Built a **mini streaming pipeline** using DuckDB:
+  - Joined stream events with purchase history by `user_id`.
+  - Calculated features:
+    - Average purchase amount per user.
+    - Count of past purchases per user.
+- Saved enriched events to `data/enriched/enriched_day1.csv`.
+
+### ✅ Step 4 – Simulated Chunked Streaming
+- Instead of processing all logs at once, simulated **real-time arrival** by splitting `user_activity_day1.csv` into **chunks of 50 events**.
+- Processed each batch separately with DuckDB:
+  - Enriched with purchase history (average spend, past purchases).
+- Appended enriched results to `data/enriched/enriched_day1_chunked.csv`.
+
+
+
+
+
 
 
 
