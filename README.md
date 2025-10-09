@@ -20,14 +20,28 @@ The pipeline integrates **real-time user activity logs** with **historical purch
 - Saved dataset in **Parquet format** for efficient processing.  
 - Verified dataset preview (500 rows, 4 columns).
 
-### ✅ Step 2 – Real-Time User Activity Logs
-- Simulated **200 user activity events** to mimic real-time streaming logs.
-- Each event contains:
-  - `user_id`
-  - `item_id`
-  - `event_type` (view, click, add_to_cart)
-  - `timestamp`
-- Saved logs to `data/stream/user_activity_day1.csv` to represent streaming ingestion.
+### ✅ Step 2 – Simulated Data Sources
+- Generated **two types of datasets** to reflect a real-world recommendation system:
+
+1. **Streaming Logs (`data/stream/user_activity_day1.csv`)**
+   - Simulated 200 user activity events with fields:
+     - `user_id`
+     - `item_id`
+     - `event_type` (view, click, add_to_cart)
+     - `timestamp`
+   - Represents **real-time user behavior** (clickstream data).
+
+2. **Batch Purchases (`data/batch/purchases.csv`)**
+   - Simulated 100 historical purchase records with fields:
+     - `user_id`
+     - `item_id`
+     - `purchase_amount`
+     - `timestamp`
+   - Represents **historical transaction data** from a relational database or data warehouse.
+
+- This dual setup ensures we have:
+  - **Real-time logs** for streaming ingestion (Kafka/Spark simulation later).
+  - **Batch data** for historical purchase context.
 
 ### ✅ Step 3 – Mini Streaming Pipeline (First Join)
 - Read historical purchases (`historical_purchases.parquet`) and simulated stream logs (`user_activity_day1.csv`).
@@ -54,7 +68,45 @@ The pipeline integrates **real-time user activity logs** with **historical purch
   - `avg_purchase_amount`, `past_purchases` → historical enrichment
 - Saved the final session dataset at `data/sessions/session_features_day1.csv`.
 
-**Next Step (Day 6):** Generate **user profiles** by aggregating across sessions (long-term behavior), preparing for recommendation modeling.
+### ✅ Step 6 – User Profile Aggregation
+- Built **user-level profiles** by aggregating session features from Day 5.
+- Key features:
+  - `total_sessions`: engagement over time
+  - `avg_clicks_per_session`, `avg_views_per_session`: activity intensity
+  - `avg_session_length`, `avg_time_gap`: engagement style
+  - `avg_purchase_amount`, `max_past_purchases`: monetary history
+- Added **recency signals** from last session:
+  - `last_session_clicks`, `last_session_views`, `last_session_length`, `last_session_event`
+- Saved user-level dataset at `data/users/user_profiles_day1.csv`.
+
+### ✅ Step 7 – User-Item Interaction Matrix
+- Constructed a **user-item interaction table** combining purchases and clickstream data.
+- Features included:
+  - `purchase_count`, `total_spent`
+  - `num_clicks`, `num_views`
+- Created an **interaction_score**:
+  - Weighted combination of purchases, clicks, and views.
+  - Formula used: `1*purchases + 0.2*clicks + 0.1*views`
+- Saved dataset at `data/reco/user_item_matrix.csv`.
+
+### ✅ Day 8 – Feature Engineering
+- Created **feature sets** for users and items:
+  
+1. **User Features (`data/features/user_features.csv`)**
+   - Total purchases
+   - Total spent
+   - Average spent
+   - Engagement counts from stream logs (views, clicks, add_to_cart)
+
+2. **Item Features (`data/features/item_features.csv`)**
+   - Total sales count
+   - Revenue generated
+   - Average selling price
+
+- These features will be used to train recommendation models.
+- This marks the transition from **raw data → ML-ready features**.
+
+**Next Step (Day 9):** Start building a baseline recommendation model (e.g., popularity-based or collaborative filtering).
 
 
 
