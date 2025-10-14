@@ -89,7 +89,7 @@ The pipeline integrates **real-time user activity logs** with **historical purch
   - Formula used: `1*purchases + 0.2*clicks + 0.1*views`
 - Saved dataset at `data/reco/user_item_matrix.csv`.
 
-### ✅ Day 8 – Feature Engineering
+### ✅ Step 8 – Feature Engineering
 - Created **feature sets** for users and items:
   
 1. **User Features (`data/features/user_features.csv`)**
@@ -106,7 +106,7 @@ The pipeline integrates **real-time user activity logs** with **historical purch
 - These features will be used to train recommendation models.
 - This marks the transition from **raw data → ML-ready features**.
 
-### ✅ Day 9 – Baseline Popularity-Based Recommender
+### ✅ Step 9 – Baseline Popularity-Based Recommender
 - Implemented a **baseline recommendation model** that suggests the most popular items to every user.
 - Popularity is calculated using:
   - Total sales (70% weight)
@@ -116,14 +116,14 @@ The pipeline integrates **real-time user activity logs** with **historical purch
 
 This model establishes a **benchmark** for evaluating future recommendation models.
 
-### ✅ Day 10 – Collaborative Filtering (User-Based using sklearn)
+### ✅ Step 10 – Collaborative Filtering (User-Based using sklearn)
 - Implemented a **Collaborative Filtering Recommender** using cosine similarity.
 - Created a **user–item matrix** from clickstream and purchase interactions.
 - Measured **user similarity** using `sklearn.metrics.pairwise.cosine_similarity`.
 - Generated personalized recommendations for each user.
 - Saved results to `data/recommendations/user_based_cf.csv`.
 
-### ✅ Day 11 – Model Evaluation & Visualization
+### ✅ Step 11 – Model Evaluation & Visualization
 - Generated **user–item ratings** from `purchase_amount`:
   ```python
   purchases["rating"] = np.clip((purchases["purchase_amount"] / purchases["purchase_amount"].max()) * 5, 1, 5)
@@ -134,7 +134,7 @@ This model establishes a **benchmark** for evaluating future recommendation mode
 - Visualized user–item interactions via a heatmap.
 - Saved evaluation metrics to data/recommendations/evaluation_day11.csv.
 
-### ✅ Day 12 – Recommendation Insights & Visualizations
+### ✅ Step 12 – Recommendation Insights & Visualizations
 - Ensured the `visuals/` directory exists before saving plots:
   ```python
   os.makedirs("visuals", exist_ok=True)
