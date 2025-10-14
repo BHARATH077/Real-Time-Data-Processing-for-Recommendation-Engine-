@@ -106,7 +106,49 @@ The pipeline integrates **real-time user activity logs** with **historical purch
 - These features will be used to train recommendation models.
 - This marks the transition from **raw data → ML-ready features**.
 
-**Next Step (Day 9):** Start building a baseline recommendation model (e.g., popularity-based or collaborative filtering).
+### ✅ Day 9 – Baseline Popularity-Based Recommender
+- Implemented a **baseline recommendation model** that suggests the most popular items to every user.
+- Popularity is calculated using:
+  - Total sales (70% weight)
+  - Normalized revenue (30% weight)
+- Generated a ranked list of top items and stored it in:
+  - `data/recommendations/popularity_based.csv`
+
+This model establishes a **benchmark** for evaluating future recommendation models.
+
+### ✅ Day 10 – Collaborative Filtering (User-Based using sklearn)
+- Implemented a **Collaborative Filtering Recommender** using cosine similarity.
+- Created a **user–item matrix** from clickstream and purchase interactions.
+- Measured **user similarity** using `sklearn.metrics.pairwise.cosine_similarity`.
+- Generated personalized recommendations for each user.
+- Saved results to `data/recommendations/user_based_cf.csv`.
+
+### ✅ Day 11 – Model Evaluation & Visualization
+- Generated **user–item ratings** from `purchase_amount`:
+  ```python
+  purchases["rating"] = np.clip((purchases["purchase_amount"] / purchases["purchase_amount"].max()) * 5, 1, 5)
+- Constructed a user–item matrix from purchase data.
+- Calculated user similarity using sklearn.metrics.pairwise.cosine_similarity.
+- Generated top-N recommendations for example users.
+- Evaluated model performance with RMSE and MAE.
+- Visualized user–item interactions via a heatmap.
+- Saved evaluation metrics to data/recommendations/evaluation_day11.csv.
+
+### ✅ Day 12 – Recommendation Insights & Visualizations
+- Ensured the **visuals/** directory exists before saving plots:
+  ```python
+  os.makedirs("visuals", exist_ok=True)
+- Generated multiple data-driven visualizations to analyze user behavior and recommendation quality:
+- Distribution of purchase amounts using Seaborn histograms.
+- User–Item interaction heatmap to visualize model coverage.
+- Highlighted key trends in purchase frequency and item popularity.
+- Exported generated visualizations to:
+  ```python
+  visuals/purchase_amount_distribution.png  
+  visuals/user_item_heatmap.png
+- Improved data storytelling by linking visual insights to user engagement metrics.
+- Prepared outputs for inclusion in the final project report and GitHub documentation.
+
 
 
 
