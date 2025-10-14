@@ -135,7 +135,7 @@ This model establishes a **benchmark** for evaluating future recommendation mode
 - Saved evaluation metrics to data/recommendations/evaluation_day11.csv.
 
 ### ✅ Day 12 – Recommendation Insights & Visualizations
-- Ensured the **visuals/** directory exists before saving plots:
+- Ensured the `visuals/` directory exists before saving plots:
   ```python
   os.makedirs("visuals", exist_ok=True)
 - Generated multiple data-driven visualizations to analyze user behavior and recommendation quality:
