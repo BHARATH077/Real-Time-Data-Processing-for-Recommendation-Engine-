@@ -149,6 +149,30 @@ This model establishes a **benchmark** for evaluating future recommendation mode
 - Improved data storytelling by linking visual insights to user engagement metrics.
 - Prepared outputs for inclusion in the final project report and GitHub documentation.
 
+### ✅ Step 13: Interactive Dashboard (Streamlit)
+# Objective: Build an interactive dashboard to visualize data and explore recommendations.
+Tasks Completed
+- Designed Streamlit app (app.py) for quick visualization of purchase insights and model results.
+- Displayed key metrics: total users, total items, total purchases.
+- Embedded visualizations from Day 12.
+- Added user selection feature for personalized recommendation view.
+- Enabled local hosting inside Colab using localtunnel (no paid tools).
+
+### ✅ Step 14 – Final Cleanup and GitHub Preparation
+# Objective: Finalize the project by organizing files, creating the required folder structure, and preparing the repository for GitHub deployment.
+🧩 Tasks Completed
+- Organized all assets into a clean, production-style structure.
+- Added a requirements.txt file listing dependencies (pandas, numpy, scikit-learn, matplotlib, seaborn, streamlit).
+- Consolidated all notebooks and scripts into one unified directory for version control.
+- Created the final README.md documenting:
+  - End-to-end pipeline overview
+  - Daily progress summary
+  - Architecture flow
+  - Setup and execution steps
+  - Future enhancement ideas
+- Verified visualization and model directories contain final outputs.
+- Prepared the project for GitHub publishing with proper .gitignore and commit instructions.
+
 
 
 
